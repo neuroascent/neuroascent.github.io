@@ -1,46 +1,118 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
-    {% include head.html %}
-    <body class="has-push-menu">
-        {% include minutes-to-read.html %}
-        {% include svg-icons.html %}
-        {% include header.html %}
-        <section class="post">
+---
+layout: blog
+section_id: blog
+---
 
-            <article role="article" id="post" class="post-content" itemprop="articleBody">
-                <p itemprop="post-info" class="post-info">
-                    {% if page.date %}
-                        <svg id="date" class="icon-calendar"><use xlink:href="#icon-calendar"></use></svg>
-                        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}" class="date">
-                            {% include date.html date=page.date %}
-                        </time>
-                    {% endif %}
-                    <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>{{ minutesText }}</span>
+
+<div class='row'>
+  <div class='large-12 columns'>
+    <div class='mod modBlogPost big'>
+      <div class='images'>
+        {% for image in page.images %}
+          <div class='image'><img alt="" src="{{site.url}}/{{image}}" /></div>
+        {% endfor %}
+      </div>
+      <div class='content'>
+        <p class='info'>
+          <span>{{page.date | date: "%B %d, %Y" }}</span>
+          /
+          <span>
+            by {{page.author}}
+          </span>
+          /
+          <span>
+            <a href="#">4 comments</a>
+          </span>
+        </p>
+        <h3><a href="{{page.url}}">{{page.title}}</a></h3>
+        {{ content }}
+      </div>
+    </div>
+    <div class='two spacing'></div>
+    <a id='comments'></a>
+    <div class='comments-wrapper'>
+      <h3 class='comments-count'>6 Comments</h3>
+      <ul class='comments'>
+        <li>
+          <div class='meta'>
+            <p class='avatar'>
+              <img width="39" height="39" alt="" src="{{site.url}}/images/avatar.png" />
+            </p>
+            <p class='info'>
+              <span class='name'>Amy</span>
+              <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+              <a href='#comment-form'>Reply</a>
+            </p>
+          </div>
+          <p>
+            Laudantium et sint repellat eum necessitatibus aut est rem illo delectus saepe. dolor consectetur et dolorem distinctio beatae doloribus magni ducimus reprehenderit voluptatibus ex officia quia. cum facere est quas provident ea nam quibusdam deserunt quis. error quis nihil ad quia corrupti asperiores labore quis error ut debitis nobis iste. laborum sint qui aut asperiores numquam itaque ea illum
+          </p>
+        </li>
+        <li>
+          <div class='meta'>
+            <p class='avatar'>
+              <img width="39" height="39" alt="" src="{{site.url}}/images/avatar.png" />
+            </p>
+            <p class='info'>
+              <span class='name'>Amy</span>
+              <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+              <a href='#comment-form'>Reply</a>
+            </p>
+          </div>
+          <p>Quam cumque magni voluptas. possimus neque in voluptates. quia consequatur voluptas eum aut mollitia ipsa commodi. sint vero earum illo sequi omnis officiis velit nihil dolor quo quisquam sint. impedit ut quisquam sed placeat et quia nam possimus veniam possimus at qui. ipsam architecto ducimus similique modi non autem consequatur soluta</p>
+          <ul class='children'>
+            <li>
+              <div class='meta'>
+                <p class='avatar'>
+                  <img width="39" height="39" alt="" src="{{site.url}}/images/avatar.png" />
                 </p>
-                <h1 class="post-title" itemprop="name">{{ page.title }}</h1>
-                <p itemprop="description" class="subtitle">{{ page.description }}</p>
-
-                {% if page.image %}
-                    <img src="{{ page.image }}" alt="Imagem de capa" class="post-cover">
-                {% endif %}
-
-                {{ content }}
-            </article>
-
-            <div class="progress-bar" data-minutes="{{ totalMinutes }}">
-                <span class="time-completed"></span>
-                <span class="time-remaining"></span>
-                <div class="bar">
-                    <span class="completed" style="width:0%;"></span>
-                    <span class="remaining" style="width:100%;"></span>
-                </div>
-            </div>
-
-            {% include share.html %}
-            {% include author.html %}
-            {% include comments.html %}
-            {% include footer.html %}
-        </section>
-    </body>
-</html>
+                <p class='info'>
+                  <span class='name'>Amy</span>
+                  <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+                  <a href='#comment-form'>Reply</a>
+                </p>
+              </div>
+              <p>Quas ut vel nobis veniam explicabo consequatur. iusto nisi eius iure voluptas perferendis omnis quod excepturi et eum. sed porro tenetur ut unde suscipit optio ipsum molestiae</p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div class='meta'>
+            <p class='avatar'>
+              <img width="39" height="39" alt="" src="{{site.url}}/images/avatar.png" />
+            </p>
+            <p class='info'>
+              <span class='name'>Amy</span>
+              <span class='datetime'>October 15, 2011 at 3:30 pm</span>
+              <a href='#comment-form'>Reply</a>
+            </p>
+          </div>
+          <p>Deleniti omnis magnam officiis tempora et suscipit quam voluptates magni magnam aut recusandae fuga. et molestiae natus harum libero. et dignissimos qui id est natus architecto quisquam non quo voluptas dignissimos et quibusdam. id saepe laudantium ipsum labore dolorum officia et odio debitis et. consequatur non veniam deserunt rerum nihil sint est</p>
+        </li>
+      </ul>
+    </div>
+    <div class='four spacing'></div>
+    <div id='comments-form'>
+      <h3>Your comment</h3>
+      <form accept-charset='UTF-8' action='#' method='post'>
+        <p class='name'>
+          <label for='name'>Your Name</label>
+          <input class='input-text required' id='name' name='name' type='text'>
+        </p>
+        <p class='email'>
+          <label for='email'>Your Email</label>
+          <input class='input-text required' id='email' name='email' type='text'>
+        </p>
+        <p class='message'>
+          <label for='message'>Your Message</label>
+          <textarea class='required' cols='80' id='message' name='message' rows='5'></textarea>
+        </p>
+        <div class='spacing'></div>
+        <p>
+          <input class='button' type='submit' value='Send Message'>
+        </p>
+      </form>
+    </div>
+    <div class='four spacing'></div>
+  </div>
+</div>
