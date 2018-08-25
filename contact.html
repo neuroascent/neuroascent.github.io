@@ -5,7 +5,7 @@ section_id: contact
 ---
 
 <div class='full parallax' style='background-image: url(images/@stock/contact-header-bg.jpg); color: #fff;'>
-  <div class='row'>
+  <!-- <div class='row'>
     <div class='large-12 columns'>
       {% include section-header.html title="Contact Us" tagline="Drop by or send an email to us" color="#fff" class="big" %}
     </div>
@@ -17,8 +17,8 @@ section_id: contact
     <div class='row'>
       <div class='medium-8 columns'>
         <div class='form'>
-          <div class='row'>
-            <form id='contact_form' method='POST'>
+          <div class='row'> -->
+            <!-- <form id='contact_form' method='POST'>
               <div class='large-12 columns'>
                 <p id='thanks' style='display: none;'>
                   Thanks for contacting us, we'll be in touch soon!
@@ -31,7 +31,35 @@ section_id: contact
                 <textarea class='required' name='message' placeholder='MESSAGE'></textarea>
                 <input class='button white' type='submit'>
               </div>
-            </form>
+            </form> -->
+            <!-- <form id='contact_form' accept-charset="UTF-8" method="POST" action="https://formspree.io/sanyam.bhutani05@gmail.com" v-on:submit.prevent="validateBeforeSubmit" ref="contact">
+              <fieldset>
+                <input type="hidden" name="_subject" value="New contact!" />
+                <input type="hidden" name="_next" value="{{ site.url }}/contact/message-sent/" />
+                <input type="hidden" name="_language" value="en" />
+
+                <input type="text" name="name" placeholder="Your name" v-validate="'required'"
+                       :class="{ 'has-error': errors.has('name') }">
+                
+                <input type="text" name="email" placeholder="Your e-mail" v-validate="'required|email'"
+                       :class="{ 'has-error': errors.has('email') }">
+                
+
+                <textarea name="message" onkeyup="adjust_textarea(this)" placeholder="Your message" v-validate="'required'"
+                          :class="{ 'has-error': errors.has('message') }"></textarea>
+
+                <button type="submit">Send</button>
+              </fieldset>
+            </form> -->
+            <!-- <form id='contact_form' action="https://formspree.io/sanyam.bhutani05@gmail.com" method="POST">
+              <input type="email" name="_replyto" placeholder="Your email" />
+              <input type="text" name="message" placeholder="Your message">
+
+              <input type="hidden" name="_subject" value="Contact form" />
+              <input type="text" name="_gotcha" style="display:none" />
+                
+              <input type="submit" value="Send">
+              </form>
           </div>
         </div>
         <div class='two spacing'></div>
@@ -39,16 +67,101 @@ section_id: contact
       <div class='medium-4 columns'>
         <div class='contact-details'>
           <h4>Our location:</h4>
-          <p>41 Dean Street, London, UK</p>
+          <p>Chennai, India</p>
           <h4>Our Phone:</h4>
-          <p>+86 (03) 9810 4612</p>
-          <h4>Fax:</h4>
-          <p>+6102 236338 5456</p>
+          <p>+91 8754563846</p>
           <h4>Our Email:</h4>
-          <p>info@devoll-team.com</p>
+          <p>neuroascent@gmail.com</p>
         </div>
       </div>
     </div>
   </div>
   <div class='four spacing'></div>
 </div>
+
+<script type="text/javascript">
+function adjust_textarea(h) {
+    h.style.height = "200px";
+    h.style.height = (h.scrollHeight)+"px";
+}
+</script>
+
+<script src="https://unpkg.com/vue@2.4.2"></script>
+<script src="https://unpkg.com/vee-validate@2.0.0-rc.8"></script>
+<script type="text/javascript">
+Vue.use(VeeValidate);
+
+new Vue({
+  el: '#form',
+  delimiters: ['${', '}'],
+  methods: {
+    validateBeforeSubmit: function () {
+      this.$validator.validateAll();
+      if (!this.errors.any()) {
+        this.$refs.contact.submit();
+      }
+    }
+  }
+});
+</script> -->
+<style type="text/css" media="screen">
+  .container {
+    margin: 0px auto;
+    max-width: 600px;
+  }
+</style>
+
+<div class="container">
+
+  <h2>Enquiry</h2>
+
+  <div id="form" class="contact-form" style=" border-width: 0px;">
+    <form  accept-charset="UTF-8" method="POST" action="https://formspree.io/{{ site.email }}" v-on:submit.prevent="validateBeforeSubmit" ref="contact" style=" border-width: 0px;" > 
+      <fieldset style=" border-width: 0px;">
+        <input type="hidden" name="_subject" value="New contact!" />
+        <input type="hidden" name="_next" value="{{ site.url }}/contact/message-sent/" />
+        <input type="hidden" name="_language" value="en" />
+
+        <input type="text" name="name" placeholder="Your name" v-validate="'required'"
+               :class="{ 'has-error': errors.has('name') }">
+        <span v-if="errors.has('name')" v-cloak>${ errors.first('name') }</span>
+
+        <input type="text" name="email" placeholder="Your e-mail" v-validate="'required|email'"
+               :class="{ 'has-error': errors.has('email') }">
+        <span v-if="errors.has('email')" v-cloak>${ errors.first('email') }</span>
+
+        <textarea name="message" onkeyup="adjust_textarea(this)" placeholder="Your message" v-validate="'required'"
+                  :class="{ 'has-error': errors.has('message') }"></textarea>
+        <span v-if="errors.has('message')" v-cloak>${ errors.first('message') }</span>
+
+        <button type="submit">Send</button>
+      </fieldset>
+    </form>
+  </div>
+
+
+<script type="text/javascript">
+function adjust_textarea(h) {
+    h.style.height = "200px";
+    h.style.height = (h.scrollHeight)+"px";
+}
+</script>
+
+<script src="https://unpkg.com/vue@2.4.2"></script>
+<script src="https://unpkg.com/vee-validate@2.0.0-rc.8"></script>
+<script type="text/javascript">
+Vue.use(VeeValidate);
+
+new Vue({
+  el: '#form',
+  delimiters: ['${', '}'],
+  methods: {
+    validateBeforeSubmit: function () {
+      this.$validator.validateAll();
+      if (!this.errors.any()) {
+        this.$refs.contact.submit();
+      }
+    }
+  }
+});
+</script>
